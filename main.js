@@ -3,10 +3,69 @@ const axios = require("axios")
 const {
   app,
   ipcMain,
-  BrowserWindow
+  BrowserWindow,
+  Menu
 } = require("electron")
 
-const path = require("path")
+const path = require("path");
+const { electron } = require("process");
+
+let mainWindow = null;
+
+const template = [
+  {
+    label: "TEST",
+    submenu: [
+      {label: "XXX", click: function() {
+        mainWindow.webContents.send("result", {"result": "PONG"})
+      }}
+    ]
+  },
+  {
+    label: 'Edit222',
+    submenu: [
+      {role: 'undo'},
+      {role: 'redo'},
+      {type: 'separator'},
+      {role: 'cut'},
+      {role: 'copy'},
+      {role: 'paste'},
+      {role: 'pasteandmatchstyle'},
+      {role: 'delete'},
+      {role: 'selectall'}
+    ]
+  },
+  {
+    label: 'View111',
+    submenu: [
+      {role: 'reload'},
+      {role: 'forcereload'},
+      {role: 'toggledevtools'},
+      {type: 'separator'},
+      {role: 'resetzoom'},
+      {role: 'zoomin'},
+      {role: 'zoomout'},
+      {type: 'separator'},
+      {role: 'togglefullscreen'}
+    ]
+  },
+  {
+    role: 'window',
+    submenu: [
+      {role: 'minimize'},
+      {role: 'close'}
+    ]
+  }, 
+  {
+    role: 'help',
+    submenu: [
+      {
+        label: 'Learn Moreascasc',
+        click () { require('electron').shell.openExternal('https://electronjs.org') }
+      }
+    ]
+  }
+];
 
 app.commandLine.appendSwitch("disable-pinch");
 
@@ -56,6 +115,8 @@ ipcMain.on("collections", async (event, _data) => {
 
     event.sender.send("result", filtered);
   })
+
+  // event.returnValue = "pong"
 })
 
 ipcMain.on("databases", async (event, _data) => {
@@ -81,6 +142,8 @@ ipcMain.on("databases", async (event, _data) => {
 
     event.sender.send("result", list);
   })
+
+  // event.returnValue = "pong"
 })
 
 ipcMain.on("api", async (event, _data) => {
@@ -91,11 +154,15 @@ ipcMain.on("api", async (event, _data) => {
   })
 
   event.sender.send("result", result.data)
+
+  // event.returnValue = "pong"
 })
 
 function createWindow() {
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));
+
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     title: "헬로~",
     width: 800,
     height: 600,
@@ -119,8 +186,7 @@ function createWindow() {
     // sandbox: true,    
     icon: path.join(__dirname, "assets/images/icon.ico")
   })
-
-  mainWindow.setMenu(null);
+  
   mainWindow.webContents.setVisualZoomLevelLimits(1, 1);
 
   // and load the index.html of the app.
