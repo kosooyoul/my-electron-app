@@ -1,0 +1,38 @@
+{
+  "name": "electron-quick-start",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder",
+    "build": "electron-builder build",
+    "build:win32": "build --win --ia32",
+    "build:win64": "build --win --x64",
+    "build:win": "npm run build:win32 && npm run build:win64",
+    "build:osx": "build --mac",
+    "build:custom": "electron-packager . --out=dist/win --platform=win32 --arch=x64 --icon=assets/images/icon.ico --asar=true --overwrite"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^11.2.2",
+    "electron-builder": "^22.9.1"
+  },
+  "build": {
+    "productName": "Electron-Application",
+    "appId": "HanulseApp"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "mongoose": "^5.11.15"
+  }
+}
