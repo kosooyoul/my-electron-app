@@ -1,0 +1,6 @@
+
+
+.hanulse_spinner {display: none; position: absolute; left: 0px; right: 0px; bottom: 0px; top: 0px; background-color: rgba(0, 0, 0, 0.8); z-index: 100000;}
+.hanulse_spinner-piece-group {position: absolute; left: 50%; top: 50%; width: 80px; height: 80px; margin-left: -40px; margin-top: -40px;}
+.hanulse_spinner-piece{position: absolute; width: 100%; height: 100%; border-radius: 100%; animation-name: hanulse_spinner-piece; animation-duration: 0.5s; animation-iteration-count: infinite;}
+@keyframes hanulse_spinner-piece {0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);}}

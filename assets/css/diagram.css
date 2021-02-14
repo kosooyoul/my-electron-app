@@ -1,0 +1,158 @@
+html, body {width: 100%; height: 100%; margin: 0px; padding: 0px;}
+body {
+	margin: 0px;
+	padding: 0px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	font-size: 0px;
+	font-family: sans-serif;
+	user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	background: black;
+}
+@keyframes bg-scroll {0% {background-position: 129px 0px;} 100% {background-position: 0px 226px;}}
+
+*::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+*::-webkit-scrollbar-track {
+	background-color: transparent; 
+	border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.5);
+	border: 1px solid rgba(127, 127, 127, 0.5);
+	border-radius: 10px;
+}
+.diagram {
+	display: block;
+	position: absolute;
+	background-color: white;
+	padding: 0px;
+	box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.4);
+	margin-left: -2px;
+	margin-top: -2px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	border: 2px solid rgb(100, 100, 100);
+	border-radius: 5px;
+	overflow: hidden;
+	z-index: 0;
+	text-align: left;
+	transition: height 0.4s;
+}
+.diagram:hover {
+	box-shadow: 0px 0px 10px 2px rgba(255, 200, 0, 0.4);
+	border: 2px solid rgb(255, 200, 0);
+}
+.diagram.focused {
+	box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.4);
+	border: 2px solid rgb(255, 200, 0);
+}
+.diagram.focused:hover {
+	box-shadow: 0px 0px 10px 2px rgba(255, 200, 0, 0.4);
+	border: 2px solid rgb(255, 225, 0);
+}
+.diagram .title {
+	background: linear-gradient(40deg, rgb(40, 170, 140), rgb(20, 90, 120));
+}
+.diagram .title .icon-collection {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	line-height: 36px;
+	vertical-align: middle;
+	margin-left: 6px;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.4);
+	background-image: url(../icons/collection.png);
+	background-size: 90%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.diagram.focused .title {
+	background: linear-gradient(40deg, rgb(40, 210, 170), rgb(40, 110, 140));
+}
+.diagram.dirty .title {
+	background: linear-gradient(40deg, rgb(170, 140, 40), rgb(120, 20, 90));
+}
+.diagram.dirty.focused .title {
+	background: linear-gradient(40deg, rgb(210, 170, 40), rgb(190, 20, 150));
+}
+.diagram .field {
+	margin-top: -1px;
+	border-top: 1px solid rgb(200, 200, 200);
+	background-color: white;
+}
+.diagram .field:hover {
+	background-color: rgb(255, 200, 0);
+}
+.diagram .field:active {
+	background-color: rgb(255, 225, 0);
+}
+.diagram .title>span {
+	font-size: 14px;
+	vertical-align: middle;
+	line-height: 36px;
+	margin: 0px 10px;
+	color: white;
+	text-shadow: 0px 0px 4px rgba(0, 0, 0, 1.0);
+}
+.diagram .field>span {
+	font-size: 12px;
+	vertical-align: middle;
+	line-height: 24px;
+	margin: 0px 6px;
+}
+.diagram .field .icon-uniquekey {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	line-height: 24px;
+	vertical-align: middle;
+	margin-left: 6px;
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, 0.2);
+	background-image: url(../icons/field_unique.png);
+	background-size: 90%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.diagram .field .icon-indexkey {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	line-height: 24px;
+	vertical-align: middle;
+	margin-left: 6px;
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, 0.2);
+	background-image: url(../icons/field_index.png);
+	background-size: 90%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.diagram .field .icon-none {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	line-height: 24px;
+	vertical-align: middle;
+	margin-left: 6px;
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+svg .line.hoverable {
+	stroke: rgba(255, 255, 255, 0.2);
+	stroke-width: 24px;
+	pointer-events: visiblestroke;
+}
+svg .line.hoverable:hover {
+	stroke: rgba(255, 200, 0, 0.8);
+	stroke-width: 24px;
+}
